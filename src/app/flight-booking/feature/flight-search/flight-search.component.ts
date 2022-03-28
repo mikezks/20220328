@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { BASE_URL } from '../app.token';
-import { Flight } from '../entities/flight';
-import { FlightService } from './flight.service';
+import { BASE_URL } from '../../../app.token';
+import { Flight } from '../../../entities/flight';
+import { FlightService } from '../../data-access/flight.service';
 
 @Component({
   selector: 'app-flight-search',

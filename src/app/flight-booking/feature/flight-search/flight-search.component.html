@@ -39,7 +39,7 @@
         *ngFor="let flight of flights"
         [class.active]="selectedFlight === flight">
         <td>{{ flight.id }}</td>
-        <td>{{ flight.from }}</td>
+        <td>{{ flight.from | city }}</td>
         <td>{{ flight.to }}</td>
         <td>{{ flight.date }}</td>
         <td>

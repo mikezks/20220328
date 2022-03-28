@@ -7,7 +7,7 @@ import { DummyFlightService } from './dummy-flight.service';
 
 @Injectable({
   providedIn: 'root',
-  useClass: DummyFlightService
+  useClass: DefaultFlightService
 })
 export abstract class FlightService {
 

@@ -4,11 +4,17 @@
 
     <div class="header">
         <h2 class="title">{{item?.from}} - {{item?.to}}</h2>
+        <h4>
+          <ng-content></ng-content>
+        </h4>
     </div>
 
     <div class="content">
         <p>Flight-No.: #{{item?.id}}</p>
         <p>Date: {{item?.date | date:'dd.MM.yyyy HH:mm'}}</p>
+        <p>
+          <ng-content select="span[myAttr].my-custom-desc"></ng-content>
+        </p>
         <p>
             <button
                 class="btn btn-default"
@@ -19,3 +25,15 @@
   </div>
 </div>
 
+<!--
+
+  Parent template
+  Template -> View
+  Between opening and closing tag -> Content
+
+  View rendering STARTS
+  Content rendering STARTS
+  Content rendering ENDS
+  View rendering ENDS
+
+ -->

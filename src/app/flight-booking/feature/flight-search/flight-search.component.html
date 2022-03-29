@@ -28,8 +28,14 @@
     *ngFor="let flight of flights"
     class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
 
-    <app-flight-card>
-      <!-- (selectedChange)="basket[flight.id] = $event"> -->
+    <app-flight-card
+      [item]="flight"
+      [selected]="basket[flight.id]">
+
+      <!-- Content of the child component -->
+      My custom title! :)
+      <span myAttr class="my-custom-desc">My custom desc.</span>
+
     </app-flight-card>
 
   </div>

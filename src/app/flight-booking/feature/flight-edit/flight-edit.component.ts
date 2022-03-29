@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Flight } from '../../../entities/flight';
 import { validateCity, validateCityWithParams } from '../../../shared/validation/city-validator';
 
 @Component({
@@ -10,7 +12,10 @@ import { validateCity, validateCityWithParams } from '../../../shared/validation
 export class FlightEditComponent implements OnInit {
   editForm: FormGroup = this.getInitialFormMetadata();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.editForm.valueChanges
@@ -41,6 +46,14 @@ export class FlightEditComponent implements OnInit {
     console.log('form valid', this.editForm.valid);
     console.log('form dirty', this.editForm.dirty);
     console.log('form touched', this.editForm.touched);
+
+    /* const flight = this.editForm.value;
+    flight.delayed = false;
+
+    this.http.post<Flight>(
+      'http://www.angular.at/api/flight',
+      flight
+    ).subscribe(console.log) */
   }
 
   setValue(): void {

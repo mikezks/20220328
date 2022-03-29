@@ -13,10 +13,6 @@ export const APP_ROUTES: Routes = [
     component: HomeComponent
   },
   {
-    path: 'flight-booking/flight-search',
-    component: FlightSearchComponent
-  },
-  {
     path: '**',
     redirectTo: 'home'
   }

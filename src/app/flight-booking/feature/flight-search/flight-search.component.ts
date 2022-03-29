@@ -17,6 +17,11 @@ export class FlightSearchComponent implements OnInit {
   flights: Flight[] = [];
   selectedFlight: Flight | undefined;
 
+  basket: Record<number, boolean> = {
+    3: true,
+    5: true
+  };
+
   constructor(
     private flightService: FlightService,
     @Inject(BASE_URL) private baseUrl: string) {
@@ -25,6 +30,15 @@ export class FlightSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    /* let a;
+
+    a = 5;
+    a = 'Hallo';
+
+    const arr = [
+      1, true, 'Angular', { name: 'Peter' }
+    ] */
   }
 
   search(): void {

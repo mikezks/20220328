@@ -6,3 +6,11 @@ export interface Flight {
   date: string; // ISO Date string
   delayed: boolean;
 }
+
+export const initialFlight: Flight = {
+  id: 0,
+  from: '',
+  to: '',
+  date: '',
+  delayed: false
+};

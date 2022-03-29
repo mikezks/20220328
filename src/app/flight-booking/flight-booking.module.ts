@@ -3,19 +3,22 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { FlightSearchComponent } from './feature/flight-search/flight-search.component';
 import { FlightCardComponent } from './ui/flight-card/flight-card.component';
+import { FlightEditComponent } from './feature/flight-edit/flight-edit.component';
 
 
 @NgModule({
   declarations: [
     FlightSearchComponent,
-    FlightCardComponent
+    FlightCardComponent,
+    FlightEditComponent
   ],
   imports: [
     CommonModule,
     SharedModule
   ],
   exports: [
-    FlightSearchComponent
+    FlightSearchComponent,
+    FlightEditComponent
   ]
 })
 export class FlightBookingModule { }

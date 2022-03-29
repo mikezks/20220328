@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Flight } from '../../../entities/flight';
 import { validateCity, validateCityWithParams } from '../../../shared/validation/city-validator';
 
@@ -11,15 +12,22 @@ import { validateCity, validateCityWithParams } from '../../../shared/validation
 })
 export class FlightEditComponent implements OnInit {
   editForm: FormGroup = this.getInitialFormMetadata();
+  showDetails: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient) {
+    private http: HttpClient,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.editForm.valueChanges
       .subscribe(console.log);
+
+    this.route.paramMap.subscribe(params => {
+      this.editForm.patchValue({ id: +params.get('id')!});
+      this.showDetails = params.get('showDetails') === 'true';
+    });
   }
 
   getInitialFormMetadata(): FormGroup {

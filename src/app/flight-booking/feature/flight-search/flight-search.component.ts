@@ -1,55 +1,47 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { BASE_URL } from '../../../app.token';
+// src/app/flight-search/flight-search.component.ts
+
+import { Component, OnInit } from '@angular/core';
 import { Flight } from '../../../entities/flight';
 import { FlightService } from '../../data-access/flight.service';
 
 @Component({
   selector: 'app-flight-search',
   templateUrl: './flight-search.component.html',
-  styleUrls: ['./flight-search.component.css'],
-  providers: [
-    { provide: BASE_URL, useValue: 'local component provider' }
-  ]
+  styleUrls: ['./flight-search.component.css']
 })
 export class FlightSearchComponent implements OnInit {
-  from: string = 'Hamburg';
-  to: string = 'Graz';
-  flights: Flight[] = [];
-  selectedFlight: Flight | undefined;
 
-  basket: Record<number, boolean> = {
+  from = 'Hamburg';
+  to = 'Graz';
+  selectedFlight: Flight | null = null;
+  delayFilter = false;
+
+  get flights() {
+    // We will refactor this to an observable in a later exercise!
+    return this.flightService.flights;
+  }
+
+  basket: { [key: number]: boolean } = {
     3: true,
     5: true
   };
 
-  constructor(
-    private flightService: FlightService,
-    @Inject(BASE_URL) private baseUrl: string) {
-
-    console.log(this.baseUrl);
+  constructor(private flightService: FlightService) {
   }
 
   ngOnInit(): void {
-
-    /* let a;
-
-    a = 5;
-    a = 'Hallo';
-
-    const arr = [
-      1, true, 'Angular', { name: 'Peter' }
-    ] */
   }
 
   search(): void {
-    this.flightService.load(this.from, this.to)
-      .subscribe({
-        next: flights => this.flights = flights,
-        error: err => console.error('Flights loading error', err)
-      });
+    this.flightService.load(this.from, this.to);
   }
 
-  select(flight: Flight): void {
-    this.selectedFlight = flight;
+  select(f: Flight): void {
+    this.selectedFlight = f;
   }
+
+  delay(): void {
+    this.flightService.delay();
+  }
+
 }
